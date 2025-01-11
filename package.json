@@ -17,6 +17,7 @@
 		"eslint": "8.48.0",
 		"eslint-config-next": "^15.1.2",
 		"mongodb": "^5.9.2",
+		"mongoose": "^8.9.4",
 		"next": "^15.1.2",
 		"next-auth": "^4.24.11",
 		"react": "^19.0.0-rc.1",
