@@ -3,7 +3,8 @@
 import bcryptjs from 'bcryptjs';
 import { NextResponse } from 'next/server';
 import dbConnect from '@/app/utils/connect';
-import { User } from '@/app/models/index';
+import { Category, User } from '@/app/models/index';
+import connectToDatabase from '@/app/utils/connect';
 
 // export async function userRegisterAction({ username, email, password }) {
 // 	if (!username || !email || !password) {
@@ -60,4 +61,11 @@ export async function userRegisterAction({ username, email, password }) {
 	} catch (error) {
 		return { success: false, message: error?.message };
 	}
+}
+
+export async function GetCategories() {
+	await connectToDatabase();
+
+	const activeCategories = await Category.find({ isActive: true }).lean();
+	return activeCategories;
 }

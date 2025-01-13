@@ -9,16 +9,16 @@ const Footer = () => {
 			<div className={styles.info}>
 				<div className={styles.logo}>
 					<Image
-						src='/logo.png'
+						src='/logo2.png'
 						alt='logo'
 						width={50}
 						height={50}
 					/>
-					<h1 className={styles.LogoText}>Test Blog</h1>
+					<h1 className={styles.LogoText}>AIStory Heaven</h1>
 				</div>
 				<p className={styles.desc}>
-					lorem ipsum dolor sit amet, consectetur adipiscing el, sed do eiusmod, sed do eiusmod tempor incididunt, sed do eiusmod tempor inc, dolore et dol, sed
-					do eiusmod tempor inc
+					AIStory Heaven is a creative space where captivating stories, imaginative ideas, and the art of storytelling come to life. Dive into a world of limitless possibilities
+					and explore narratives that spark your imagination.
 				</p>
 				<div className={styles.icons}>
 					<Image

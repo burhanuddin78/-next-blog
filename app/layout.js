@@ -9,8 +9,8 @@ import AuthProvider from '@/app/ui/providers/AuthProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-	title: 'Lama Dev Blog App',
-	description: 'The best blog app!',
+	title: 'AIStory Heaven – The Ultimate Blog App',
+	description: 'Explore nightly AI-generated stories and unleash your imagination!',
 };
 
 export default function RootLayout({ children }) {

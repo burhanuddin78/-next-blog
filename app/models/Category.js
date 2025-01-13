@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const CategorySchema = new mongoose.Schema(
 	{
-		name: { type: String, min: 3, max: 20, required: true },
+		title: { type: String, min: 3, max: 20, required: true, lowercase: true, trim: true, unique: true },
 		image: { type: String },
 		isActive: { type: Boolean, default: true },
 		color: { type: String, required: true },
@@ -10,6 +10,6 @@ const CategorySchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-const User = mongoose.models.User || mongoose.model('Category', CategorySchema);
+const Category = mongoose.models.Category || mongoose.model('Category', CategorySchema);
 
-export default User;
+export default Category;

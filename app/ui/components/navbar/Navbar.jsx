@@ -28,7 +28,7 @@ const Navbar = () => {
 					width={24}
 				/>
 			</div>
-			<div className={styles.logo}>Test Blog</div>
+			<div className={styles.logo}>AIStory Heaven</div>
 
 			<div className={styles.links}>
 				<ThemeToggle />

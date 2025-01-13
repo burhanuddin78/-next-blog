@@ -6,10 +6,10 @@ const Featured = () => {
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>
-				<b>Hey, Test blog here!, </b>
-				Discover my stories and creative ideas.
+				<b>Welcome to AIStory Heaven!</b>
+				{'  '}
+				Explore captivating stories, imaginative ideas, and the art of creative storytelling.
 			</h1>
-
 			<div className={styles.post}>
 				<div className={styles.imageContainer}>
 					<Image
@@ -22,8 +22,8 @@ const Featured = () => {
 				<div className={styles.textContainer}>
 					<h1 className={styles.postTitle}>Lorem ipsum dolor sit amet, consectetur adipiscing el.</h1>
 					<p className={styles.postDescription}>
-						Lorem ipsum dolor sit amet, consectet adipiscing el. Cupidate, Lorem ipsum dolor sit amet, consectet adipiscing el. Lorem ipsum dolor sit amet,
-						consectet adipiscing el. Lorem ipsum dolor sit amet, consectet adipiscing el.
+						Lorem ipsum dolor sit amet, consectet adipiscing el. Cupidate, Lorem ipsum dolor sit amet, consectet adipiscing el. Lorem ipsum dolor sit amet, consectet adipiscing el.
+						Lorem ipsum dolor sit amet, consectet adipiscing el.
 					</p>
 					<button className={styles.button}>Read More</button>
 				</div>
