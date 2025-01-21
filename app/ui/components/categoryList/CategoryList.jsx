@@ -1,10 +1,10 @@
 import styles from './categoryList.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { GetCategories } from '@/app/lib/action';
+import { getCategories } from '@/app/lib/action';
 
 export default async function CategoryList() {
-	const categoryList = await GetCategories();
+	const categoryList = await getCategories();
 
 	return (
 		<div className={styles.container}>

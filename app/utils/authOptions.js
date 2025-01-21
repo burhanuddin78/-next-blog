@@ -5,6 +5,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import connectToDatabase from '@/app/utils/connect';
 import { User, Account } from '@/app/models/index';
+import { getServerSession } from 'next-auth';
 
 export const authOptions = {
 	adapter: MongoDBAdapter(clientPromise),
@@ -15,7 +16,8 @@ export const authOptions = {
 
 	session: {
 		strategy: 'jwt',
-		maxAge: 2 * 60, // 2 minutes in seconds 10 * 24 * 60 * 60,
+		// maxAge: 2 * 60, // 2 minutes in seconds 10 * 24 * 60 * 60,
+		maxAge: 10 * 24 * 60 * 60, // 2 minutes in seconds 10 * 24 * 60 * 60,
 	},
 	debug: process.env.NODE_ENV === 'development',
 
@@ -138,3 +140,5 @@ export const authOptions = {
 		},
 	},
 };
+
+export const getAuthSession = () => getServerSession(authOptions);

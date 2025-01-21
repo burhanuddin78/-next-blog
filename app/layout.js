@@ -5,6 +5,7 @@ import Footer from '@/app/ui/components/footer/Footer';
 import { ThemeContextProvider } from '@/app/ui/components/context/ThemeContext';
 import ThemeProvider from '@/app/ui/providers/ThemeProvider';
 import AuthProvider from '@/app/ui/providers/AuthProvider';
+import ProgressBarProviders from '@/app/ui/providers/ProgressBarProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,19 +20,21 @@ export default function RootLayout({ children }) {
 			<body
 				className={inter.className}
 				suppressHydrationWarning={true}>
-				<AuthProvider>
-					<ThemeContextProvider>
-						<ThemeProvider>
-							<div className='container'>
-								<div className='wrapper'>
-									<Navbar />
-									{children}
-									<Footer />
+				<ProgressBarProviders>
+					<AuthProvider>
+						<ThemeContextProvider>
+							<ThemeProvider>
+								<div className='container'>
+									<div className='wrapper'>
+										<Navbar />
+										{children}
+										<Footer />
+									</div>
 								</div>
-							</div>
-						</ThemeProvider>
-					</ThemeContextProvider>
-				</AuthProvider>
+							</ThemeProvider>
+						</ThemeContextProvider>
+					</AuthProvider>
+				</ProgressBarProviders>
 			</body>
 		</html>
 	);

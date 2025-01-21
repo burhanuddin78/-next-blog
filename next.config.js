@@ -5,6 +5,9 @@ const nextConfig = {
 		// your project has ESLint errors.
 		ignoreDuringBuilds: true,
 	},
+	images: {
+		domains: ['d2gyiv7g58gjn4.cloudfront.net'], // Replace with your CloudFront domain
+	},
 };
 
 module.exports = nextConfig;
