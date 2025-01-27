@@ -8,7 +8,7 @@ import { ThemeContext } from '@/app/ui/components/context/ThemeContext';
 
 import MenuCategories from '../menuCategories/MenuCategories';
 
-const Menu = () => {
+const Menu = ({ data }) => {
 	let { categoryList = [] } = useContext(ThemeContext) || {};
 
 	return (

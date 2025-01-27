@@ -12,6 +12,33 @@ import 'react-quill-new/dist/quill.bubble.css';
 import { useRouter } from 'next/navigation';
 import { calculateTimeDifference, TOAST_SETTINGS, MAX_IMAGE_SIZE, ALLOWED_IMAGE_TYPES } from '@/app/ui/helpers/helper';
 
+const modules = {
+	toolbar: {
+		container: '#toolbar',
+	},
+};
+const formats = [
+	'font',
+	'size',
+	'bold',
+	'italic',
+	'underline',
+	'strike',
+	'color',
+	'background',
+	'script',
+	'header',
+	'blockquote',
+	'code-block',
+	'indent',
+	'list',
+	'direction',
+	'align',
+	'link',
+	'image',
+	'video',
+	'formula',
+];
 const WritePage = ({ slug }) => {
 	const router = useRouter();
 
@@ -240,7 +267,7 @@ const WritePage = ({ slug }) => {
 							src={previewUrl}
 							alt='Cover preview'
 							width={600}
-							height={300}
+							height={350}
 						/>
 					</div>
 				)}

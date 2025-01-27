@@ -7,6 +7,8 @@ const PostSchema = new mongoose.Schema(
 		description: { type: String, min: 1, required: true, trim: true },
 		coverImage: { type: String },
 		isActive: { type: Boolean, default: false },
+		isFeatured: { type: Boolean, default: false },
+		isEditorsChoice: { type: Boolean, default: false },
 		category: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Category',

@@ -61,6 +61,7 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     overflow: hidden;
+    align-items: center;
 }
 
 .button {
@@ -111,4 +112,8 @@
     color: #d62222;
     font-size: 12px;
     margin-top: 5px;
+}
+
+.ql-editor {
+    font-size: 16px !important;
 }

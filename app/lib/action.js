@@ -213,7 +213,9 @@ export async function getPostById(slug) {
 
 export async function togglePostPublication(slug) {
 	try {
+		await connectToDatabase();
 		// Validation for input
+
 		if (!slug) {
 			return { success: false, error: 'Slug is required.' };
 		}
@@ -238,5 +240,46 @@ export async function togglePostPublication(slug) {
 		// Log the error for debugging
 		console.error('Error toggling post publication:', error);
 		return { success: false, error: 'An error occurred while toggling the publication status.' };
+	}
+}
+
+export async function getHomePagePosts() {
+	try {
+		await connectToDatabase();
+		// Fetch the featured post
+		const featuredPost = await Post.findOne({ isFeatured: true, isActive: true }).populate('category', 'name').populate('user', 'name').lean();
+
+		if (featuredPost) {
+			featuredPost._id = featuredPost._id.toString(); // Convert Post ID
+			featuredPost.category._id = featuredPost.category._id.toString(); // Convert Category ID
+			featuredPost.user._id = featuredPost.user._id.toString(); // Convert User ID
+			if (featuredPost.publishedAt) {
+				featuredPost.publishedAt = featuredPost.publishedAt.toISOString(); // Format Date
+			}
+		}
+
+		// Fetch editor's choice posts
+		let editorsChoice = await Post.find({ isEditorsChoice: true, isActive: true })
+			.sort({ publishedAt: -1 })
+			.limit(5)
+			.populate('category', 'name')
+			.populate('user', 'name')
+			.lean();
+
+		editorsChoice = editorsChoice.map(({ slug, title, description, coverImage, user }) => ({ slug, title, description, coverImage, editor: user.name }));
+
+		// Fetch recent posts
+		let recentPosts = await Post.find({ isActive: true }).sort({ publishedAt: -1 }).limit(5).populate('category', 'name').populate('user', 'name').lean();
+
+		recentPosts = recentPosts.map(({ slug, title, description, coverImage, user }) => ({ slug, title, description, coverImage, editor: user.name }));
+
+		return {
+			featuredPost,
+			editorsChoice,
+			recentPosts,
+		};
+	} catch (error) {
+		console.error('Error fetching posts:', error);
+		throw new Error('Failed to fetch posts');
 	}
 }

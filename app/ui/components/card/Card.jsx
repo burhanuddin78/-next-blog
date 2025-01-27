@@ -3,12 +3,13 @@ import styles from './card.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Card = () => {
+const Card = ({ item: { title, description, category, coverImage } }) => {
+	console.log(title, description, category, coverImage);
 	return (
 		<div className={styles.container}>
 			<div className={styles.imageContainer}>
 				<Image
-					src='/p1.jpeg'
+					src={coverImage ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${coverImage}` : '/p1.jpeg'}
 					alt=''
 					fill
 					className={styles.image}
@@ -21,13 +22,10 @@ const Card = () => {
 				</div>
 
 				<Link href='/'>
-					<h1>Lorem ipsum dolor sit amet, consectetur adipiscing</h1>
+					<h1>{title}</h1>
 				</Link>
 
-				<p className={styles.desc}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur
-					adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet.....
-				</p>
+				<p className={styles.desc}>{description ? description.substr(0, 230) + '....' : ''}</p>
 
 				<Link
 					className={styles.link}

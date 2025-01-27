@@ -4,16 +4,20 @@ import Pagination from '../pagination/Pagination';
 import Card from '../card/Card';
 import Image from 'next/image';
 
-const CardList = () => {
+const CardList = ({ data }) => {
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>Recent Posts</h1>
 
 			<div className={styles.posts}>
-				<Card />
-				<Card />
-				<Card />
-				<Card />
+				{data.length > 0
+					? data.map((x) => (
+							<Card
+								key={x._id}
+								item={x}
+							/>
+					  ))
+					: 'No Blogs Available'}
 			</div>
 
 			<Pagination />
