@@ -2,15 +2,14 @@ import React from 'react';
 import styles from './cardList.module.css';
 import Pagination from '../pagination/Pagination';
 import Card from '../card/Card';
-import Image from 'next/image';
 
-const CardList = ({ data }) => {
+const CardList = ({ data, count }) => {
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>Recent Posts</h1>
 
 			<div className={styles.posts}>
-				{data.length > 0
+				{data?.length > 0
 					? data.map((x) => (
 							<Card
 								key={x._id}
@@ -20,7 +19,7 @@ const CardList = ({ data }) => {
 					: 'No Blogs Available'}
 			</div>
 
-			<Pagination />
+			<Pagination count={count} />
 		</div>
 	);
 };

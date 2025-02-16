@@ -1,4 +1,5 @@
 .container {
+    padding: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -11,4 +12,14 @@
     color: white;
     cursor: pointer;
 
+}
+
+.button:hover {
+
+    background-color: rgba(212, 25, 62, 0.808);
+}
+
+.button:disabled {
+    background-color: rgba(212, 25, 62, 0.808);
+    cursor: not-allowed;
 }

@@ -1,44 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createPost, updatePost, getCategories, getPostById, togglePostPublication } from '@/app/lib/action';
+import { createPost, updatePost, getCategories, getPostBySlug, togglePostPublication } from '@/app/lib/action';
 import Image from 'next/image';
 import { z } from 'zod';
-import ReactQuill from 'react-quill-new';
 import { toast, ToastContainer } from 'react-toastify';
-
-import styles from './writePage.module.css';
-import 'react-quill-new/dist/quill.bubble.css';
+import Editor from '../reactQuill/reactQuill';
 import { useRouter } from 'next/navigation';
 import { calculateTimeDifference, TOAST_SETTINGS, MAX_IMAGE_SIZE, ALLOWED_IMAGE_TYPES } from '@/app/ui/helpers/helper';
+import styles from './writePage.module.css';
 
-const modules = {
-	toolbar: {
-		container: '#toolbar',
-	},
-};
-const formats = [
-	'font',
-	'size',
-	'bold',
-	'italic',
-	'underline',
-	'strike',
-	'color',
-	'background',
-	'script',
-	'header',
-	'blockquote',
-	'code-block',
-	'indent',
-	'list',
-	'direction',
-	'align',
-	'link',
-	'image',
-	'video',
-	'formula',
-];
 const WritePage = ({ slug }) => {
 	const router = useRouter();
 
@@ -73,7 +44,7 @@ const WritePage = ({ slug }) => {
 		if (slug) {
 			const fetchPost = async () => {
 				try {
-					const { success, data, error } = await getPostById(slug);
+					const { success, data, error } = await getPostBySlug(slug);
 					if (success && data) {
 						setTitle(data.title);
 						setDescription(data.description);
@@ -237,7 +208,7 @@ const WritePage = ({ slug }) => {
 					className={styles.label}>
 					Description
 				</label>
-				<ReactQuill
+				<Editor
 					id='description'
 					theme='bubble'
 					value={description}

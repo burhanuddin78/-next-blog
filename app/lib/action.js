@@ -8,6 +8,7 @@ import { resizeImage, slugify, MAX_FILE_SIZE } from '../utils/common';
 import { uploadToS3 } from '../utils/s3';
 
 import { revalidatePath } from 'next/cache';
+import { generateBlog, generateImage } from '../utils/assistanceService';
 
 export async function userRegisterAction({ username, email, password }) {
 	try {
@@ -92,7 +93,8 @@ export async function createPost({ title, description, category, coverImage }) {
 		const bucketName = process.env.AWS_S3_BUCKET_NAME;
 		const folder = 'blog-covers';
 		const mime = coverImage.type;
-		const extension = mime.split('/')[1];
+		let extension = mime.split('/')[1];
+		extension = extension.replace('+xml', ''); //for svg
 		const key = `${Date.now()}-${post._id.toString()}.${extension}`;
 
 		const buffer = await coverImage.arrayBuffer();
@@ -140,7 +142,7 @@ export async function updatePost(slug, { title, description, category, coverImag
 		if (coverImage.size > MAX_FILE_SIZE) {
 			return { success: false, message: 'File size exceeds the allowed limit' };
 		}
-		if (!['image/jpeg', 'image/png', 'image/webp'].includes(coverImage.type)) {
+		if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'].includes(coverImage.type)) {
 			return { success: false, message: 'Invalid image type' };
 		}
 	}
@@ -164,7 +166,8 @@ export async function updatePost(slug, { title, description, category, coverImag
 			const bucketName = process.env.AWS_S3_BUCKET_NAME;
 			const folder = 'blog-covers';
 			const mime = coverImage.type;
-			const extension = mime.split('/')[1];
+			let extension = mime.split('/')[1];
+			extension = extension.replace('+xml', ''); //for svg
 			const key = `${Date.now()}-${updatedPost._id.toString()}.${extension}`;
 
 			const buffer = await coverImage.arrayBuffer();
@@ -181,7 +184,7 @@ export async function updatePost(slug, { title, description, category, coverImag
 	}
 }
 
-export async function getPostById(slug) {
+export async function getPostBySlug(slug) {
 	await connectToDatabase();
 
 	// Validation
@@ -190,8 +193,8 @@ export async function getPostById(slug) {
 	}
 
 	// check if the blog is existing
-	const post = await Post.findOne({ slug }).lean();
-	// Validation
+	const post = await Post.findOne({ slug }).populate('category', 'title').populate('user', 'name').lean();
+	// Validation`
 	if (!post) {
 		return { success: false, error: 'Blog Not Found' };
 	}
@@ -204,7 +207,9 @@ export async function getPostById(slug) {
 			title: post.title,
 			description: post.description,
 			coverImageUrl: post.coverImage,
-			category: post.category.toString(),
+			category: post.category._id.toString(),
+			categoryName: post.category.title,
+			editor: post.user.name,
 			publishedAt: new Date(post.publishedAt),
 			isActive: post.isActive,
 		},
@@ -243,7 +248,18 @@ export async function togglePostPublication(slug) {
 	}
 }
 
-export async function getHomePagePosts() {
+const transformedData = ({ _id, slug, title, description, coverImage, user, category, publishedAt }) => ({
+	id: _id?.toString() || '',
+	slug,
+	title,
+	description,
+	coverImage,
+	category: { title: category.title, color: category.color },
+	editor: user.name,
+	publishedAt,
+});
+
+export async function getFeaturedPost() {
 	try {
 		await connectToDatabase();
 		// Fetch the featured post
@@ -258,28 +274,107 @@ export async function getHomePagePosts() {
 			}
 		}
 
-		// Fetch editor's choice posts
-		let editorsChoice = await Post.find({ isEditorsChoice: true, isActive: true })
-			.sort({ publishedAt: -1 })
-			.limit(5)
-			.populate('category', 'name')
-			.populate('user', 'name')
-			.lean();
-
-		editorsChoice = editorsChoice.map(({ slug, title, description, coverImage, user }) => ({ slug, title, description, coverImage, editor: user.name }));
-
 		// Fetch recent posts
-		let recentPosts = await Post.find({ isActive: true }).sort({ publishedAt: -1 }).limit(5).populate('category', 'name').populate('user', 'name').lean();
+		let recentPosts = await Post.find({ isActive: true }).sort({ publishedAt: -1 }).limit(5).populate('category', 'title').populate('user', 'name').lean();
 
-		recentPosts = recentPosts.map(({ slug, title, description, coverImage, user }) => ({ slug, title, description, coverImage, editor: user.name }));
+		recentPosts = recentPosts.map(transformedData);
 
 		return {
 			featuredPost,
-			editorsChoice,
 			recentPosts,
 		};
 	} catch (error) {
 		console.error('Error fetching posts:', error);
-		throw new Error('Failed to fetch posts');
+		return {
+			featuredPost: [],
+			recentPosts: [],
+		};
 	}
+}
+
+export async function getAllPosts({ page = 1, categoryTitle = '' }) {
+	try {
+		const ITEM_PER_PAGE = 5;
+		page = parseInt(page) || 1; // Get current page (default to 1 if not provided)
+
+		// Calculate skip value for pagination
+		const skip = (page - 1) * ITEM_PER_PAGE;
+
+		let posts;
+		let count;
+
+		if (categoryTitle) {
+			// Find the category by name
+			const category = await Category.findOne({ title: categoryTitle });
+
+			if (category) {
+				// If category found, retrieve posts for this category
+				posts = await Post.find({ category: category._id })
+					.populate('category', { title: 1, color: 1 })
+					.populate('user', 'name')
+					.sort({ createdAt: -1 })
+					.skip(skip) // Apply pagination
+					.limit(ITEM_PER_PAGE)
+					.lean(); // Apply limit
+
+				count = await Post.find({ category: category._id }).countDocuments();
+			} else {
+				// If category not found, return all posts
+				posts = await Post.find()
+					.populate('category', { title: 1, color: 1 })
+					.populate('user', 'name')
+					.sort({ createdAt: -1 })
+					.skip(skip)
+					.limit(ITEM_PER_PAGE)
+					.lean();
+				count = await Post.find().countDocuments();
+			}
+		} else {
+			// If no category is provided in the query, return all posts
+			posts = await Post.find().populate('category', { title: 1, color: 1 }).populate('user', 'name').sort({ createdAt: -1 }).skip(skip).limit(ITEM_PER_PAGE);
+			count = await Post.find().countDocuments();
+		}
+
+		// Send the posts in the response
+		posts = posts.map(transformedData);
+		return {
+			success: true,
+			posts,
+			count,
+		};
+	} catch (error) {
+		return { success: false, posts: [], count: 0 };
+	}
+}
+
+export async function getEditorChoicePosts() {
+	try {
+		// Fetch editor's choice posts
+		let editorsChoice = await Post.find({ isEditorsChoice: true, isActive: true })
+			.sort({ publishedAt: -1 })
+			.limit(5)
+			.populate('category', { title: 1, color: 1 })
+			.populate('user', 'name')
+			.lean();
+
+		editorsChoice = editorsChoice.map(transformedData);
+		return {
+			editorsChoice,
+		};
+	} catch (error) {
+		return {};
+	}
+}
+
+export async function getPostsForSiteMap() {
+	let posts = await Post.find().sort({ createdAt: -1 });
+	posts = posts.map(transformedData);
+	return {
+		posts,
+	};
+}
+
+export async function test() {
+	// generateBlog();
+	// generateImage();
 }

@@ -20,6 +20,20 @@ const PostSchema = new mongoose.Schema(
 			required: true,
 		},
 		publishedAt: { type: Date },
+		views: [
+			{
+				user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+			},
+		],
+
+		comments: [
+			{
+				_id: { type: String, required: true },
+				user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+				text: { type: String, required: true },
+				date: { type: Date, default: Date.now },
+			},
+		],
 	},
 	{ timestamps: true },
 );

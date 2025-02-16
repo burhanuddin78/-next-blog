@@ -10,42 +10,46 @@ export const TOAST_SETTINGS = {
 };
 
 export const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB
-export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
+export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];
 
 export const calculateTimeDifference = (publishTime) => {
-	// Convert publish time string to a JavaScript Date object
+	if (!publishTime) return 'Invalid date'; // Handle empty input
+
 	const publishDate = new Date(publishTime);
+	if (isNaN(publishDate.getTime())) return 'Invalid date'; // Handle invalid dates
 
-	// Get the current time
 	const currentDate = new Date();
+	const difference = Math.floor((currentDate - publishDate) / 1000); // Convert to seconds
 
-	// Calculate the difference in milliseconds
-	const difference = currentDate - publishDate;
+	if (difference < 60) return 'Just now'; // Less than a minute
 
-	// Convert difference to minutes, hours, days, months, and years
-	const minutes = Math.floor((difference / (1000 * 60)) % 60);
-	const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-	const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-	const months = Math.floor(days / 30);
-	const years = Math.floor(months / 12);
+	const minutes = Math.floor(difference / 60);
+	const hours = Math.floor(minutes / 60);
+	const days = Math.floor(hours / 24);
+	const months = Math.floor(days / 30.44); // More accurate month calculation
+	const years = Math.floor(days / 365.25); // More accurate year calculation
 
-	let timeString = '';
+	if (years > 0) return `${years} year${years === 1 ? '' : 's'} ago`;
+	if (months > 0) return `${months} month${months === 1 ? '' : 's'} ago`;
+	if (days > 0) return `${days} day${days === 1 ? '' : 's'} ago`;
+	if (hours > 0) return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+	return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+};
 
-	if (years > 0) {
-		timeString += years + (years === 1 ? ' year ' : ' years ');
-	}
-	if (months > 0) {
-		timeString += months + (months === 1 ? ' month ' : ' months ');
-	}
-	if (days > 0) {
-		timeString += days + (days === 1 ? ' day ' : ' days ');
-	}
-	if (hours > 0) {
-		timeString += hours + (hours === 1 ? ' hour ' : ' hours ');
-	}
-	if (minutes > 0) {
-		timeString += minutes + (minutes === 1 ? ' minute' : ' minutes');
-	}
+export const formatRegionalDate = (date, locale = 'en-US') => {
+	try {
+		// Format date based on locale
+		const formattedDate = new Intl.DateTimeFormat(locale, {
+			dateStyle: 'medium',
+		}).format(new Date(date));
 
-	return timeString.trim();
+		return formattedDate;
+	} catch (error) {
+		return '';
+	}
+};
+
+export const capitalizeFirstLetter = (str) => {
+	if (!str || str == '') return '';
+	return str?.charAt(0)?.toUpperCase() + str.slice(1);
 };

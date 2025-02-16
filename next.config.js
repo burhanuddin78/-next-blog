@@ -8,6 +8,11 @@ const nextConfig = {
 	images: {
 		domains: ['d2gyiv7g58gjn4.cloudfront.net'], // Replace with your CloudFront domain
 	},
+	experimental: {
+		serverActions: {
+			bodySizeLimit: '2mb',
+		},
+	},
 };
 
 module.exports = nextConfig;

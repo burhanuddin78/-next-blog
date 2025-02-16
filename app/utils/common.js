@@ -1,12 +1,10 @@
 import sharp from 'sharp';
 
-export const slugify = (str) =>
-	str
+export const slugify = (title) =>
+	title
 		.toLowerCase()
-		.trim()
-		.replace(/[^\w\s-]/g, '')
-		.replace(/[\s_-]+/g, '-')
-		.replace(/^-+|-+$/g, '');
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
 
 export async function resizeImage(buffer) {
 	return await sharp(buffer).resize(1200, 628).toFormat('jpeg').jpeg({ quality: 90 }).toBuffer();

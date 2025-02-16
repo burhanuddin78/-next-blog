@@ -17,8 +17,8 @@ const Footer = () => {
 					<h1 className={styles.LogoText}>AIStory Heaven</h1>
 				</div>
 				<p className={styles.desc}>
-					AIStory Heaven is a creative space where captivating stories, imaginative ideas, and the art of storytelling come to life. Dive into a world of limitless possibilities
-					and explore narratives that spark your imagination.
+					AIStory Heaven is a creative space where captivating stories, imaginative ideas, and the art of storytelling come to life. Dive into a world of
+					limitless possibilities and explore narratives that spark your imagination.
 				</p>
 				<div className={styles.icons}>
 					<Image
@@ -50,10 +50,10 @@ const Footer = () => {
 			<div className={styles.links}>
 				<div className={styles.list}>
 					<span className={styles.listTitle}>Links</span>
-					<Link href='/Homepage'>Homepage</Link>
-					<Link href='/Blog'>Blog</Link>
-					<Link href='/About'>About</Link>
-					<Link href='/Contact'>Contact</Link>
+					<Link href='/'>Homepage</Link>
+					<Link href='/blog'>Blog</Link>
+					<Link href='/about'>About</Link>
+					<Link href='/contact'>Contact</Link>
 				</div>
 				<div className={styles.list}>
 					<span className={styles.listTitle}>Tags</span>
