@@ -348,6 +348,7 @@ export async function getAllPosts({ page = 1, categoryTitle = '' }) {
 }
 
 export async function getEditorChoicePosts() {
+	await connectToDatabase();
 	try {
 		// Fetch editor's choice posts
 		let editorsChoice = await Post.find({ isEditorsChoice: true, isActive: true })
@@ -367,6 +368,7 @@ export async function getEditorChoicePosts() {
 }
 
 export async function getPostsForSiteMap() {
+	await connectToDatabase();
 	let posts = await Post.find().sort({ createdAt: -1 });
 	posts = posts.map(transformedData);
 	return {
