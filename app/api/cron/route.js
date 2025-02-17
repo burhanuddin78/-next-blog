@@ -7,12 +7,12 @@ import { NextResponse } from 'next/server';
 import { nullable } from 'zod';
 
 export async function GET(req, res) {
-	// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-	// return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-	// }
+	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+		return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+	}
 
 	try {
-		await generatePosts();
+		generatePosts();
 		return Response.json({ success: true }, { status: 200 });
 	} catch (error) {
 		console.error('Error in GET /posts:', error);
