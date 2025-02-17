@@ -3,8 +3,6 @@ import { resizeImage, slugify } from '@/app/utils/common';
 import connectToDatabase from '@/app/utils/connect';
 import { uploadToS3 } from '@/app/utils/s3';
 import { generateBlog, generateImage } from '@/app/utils/assistanceService';
-import { NextResponse } from 'next/server';
-import { nullable } from 'zod';
 
 export async function GET(req, res) {
 	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -12,7 +10,7 @@ export async function GET(req, res) {
 	}
 
 	try {
-		generatePosts();
+		await generatePosts();
 		return Response.json({ success: true }, { status: 200 });
 	} catch (error) {
 		console.error('Error in GET /posts:', error);

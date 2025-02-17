@@ -8,7 +8,6 @@ import { resizeImage, slugify, MAX_FILE_SIZE } from '../utils/common';
 import { uploadToS3 } from '../utils/s3';
 
 import { revalidatePath } from 'next/cache';
-import { generateBlog, generateImage } from '../utils/assistanceService';
 
 export async function userRegisterAction({ username, email, password }) {
 	try {
@@ -293,6 +292,7 @@ export async function getFeaturedPost() {
 }
 
 export async function getAllPosts({ page = 1, categoryTitle = '' }) {
+	await connectToDatabase();
 	try {
 		const ITEM_PER_PAGE = 5;
 		page = parseInt(page) || 1; // Get current page (default to 1 if not provided)
@@ -374,9 +374,4 @@ export async function getPostsForSiteMap() {
 	return {
 		posts,
 	};
-}
-
-export async function test() {
-	// generateBlog();
-	// generateImage();
 }

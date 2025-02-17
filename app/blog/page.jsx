@@ -14,7 +14,7 @@ export default async function BlogPage(props) {
 
 	return (
 		<div className={styles.container}>
-			<h1 className={styles.title}>{capitalizeFirstLetter(cat)} Blog</h1>
+			<h1 className={styles.title}>{capitalizeFirstLetter(cat)} Blogs</h1>
 			<div className={styles.content}>
 				<CardList
 					page={page}

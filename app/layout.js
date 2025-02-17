@@ -12,6 +12,20 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
 	title: 'AIStory Heaven – The Ultimate Blog App',
 	description: 'Explore nightly AI-generated stories and unleash your imagination!',
+
+	openGraph: {
+		title: 'AIStory Heaven – The Ultimate Blog App',
+		description: 'Discover how our AI-powered blog delivers fresh content daily across various topics.',
+		url: process.env.NEXT_PUBLIC_SITE_URL,
+		siteName: 'Your Blog Name',
+		images: [{ url: 'https://www.aistoryheaven.fun/logo.png' }],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'AIStory Heaven – The Ultimate Blog App',
+		description: 'AI-powered blog with daily updates.',
+		image: 'https://www.aistoryheaven.fun/logo.png',
+	},
 };
 
 export default function RootLayout({ children }) {

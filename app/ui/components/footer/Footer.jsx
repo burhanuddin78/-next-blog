@@ -9,7 +9,7 @@ const Footer = () => {
 			<div className={styles.info}>
 				<div className={styles.logo}>
 					<Image
-						src='/logo2.png'
+						src='/logo.png'
 						alt='logo'
 						width={50}
 						height={50}
@@ -57,17 +57,34 @@ const Footer = () => {
 				</div>
 				<div className={styles.list}>
 					<span className={styles.listTitle}>Tags</span>
-					<Link href='/Style'>Style</Link>
-					<Link href='/Coding'>Coding</Link>
-					<Link href='/Fashion'>Fashion</Link>
-					<Link href='/Travel'>Travel</Link>
+					<Link href='/blog?cat=style'>Style</Link>
+					<Link href='/blog?cat=coding'>Coding</Link>
+					<Link href='/blog?cat=fashion'>Fashion</Link>
+					<Link href='/blog?cat=travel'>Travel</Link>
+					<Link href='/blog?cat=culture'>Culture</Link>
 				</div>
 				<div className={styles.list}>
 					<span className={styles.listTitle}>Social</span>
-					<Link href='/Facebook'>Facebook</Link>
-					<Link href='/Instagram'>Instagram</Link>
-					<Link href='/TikTok'>TikTok</Link>
-					<Link href='/Youtube'>Youtube</Link>
+					<Link
+						href='https://www.facebook.com'
+						target='_blank'>
+						Facebook
+					</Link>
+					<Link
+						href='https://www.instagram.com'
+						target='_blank'>
+						Instagram
+					</Link>
+					<Link
+						href='https://www.tiktok.com'
+						target='_blank'>
+						TikTok
+					</Link>
+					<Link
+						href='https://www.youtube.com'
+						target='_blank'>
+						Youtube
+					</Link>
 				</div>
 			</div>
 		</div>

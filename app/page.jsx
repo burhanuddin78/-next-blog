@@ -5,7 +5,7 @@ import CardList from '@/app/ui/components/cardList/CardList';
 import Menu from '@/app/ui/components/menu/Menu';
 import Head from 'next/head';
 
-import { getFeaturedPost, getCategories, getAllPosts, test } from './lib/action';
+import { getFeaturedPost, getCategories, getAllPosts } from './lib/action';
 
 export default async function Home(props) {
 	const searchParams = await props.searchParams;
@@ -26,8 +26,6 @@ export default async function Home(props) {
 			name: post.title,
 		})),
 	};
-
-	test();
 
 	return (
 		<>
