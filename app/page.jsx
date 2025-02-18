@@ -3,9 +3,55 @@ import Featured from '@/app/ui/components/featured/Featuerd';
 import CategoryList from '@/app/ui/components/categoryList/CategoryList';
 import CardList from '@/app/ui/components/cardList/CardList';
 import Menu from '@/app/ui/components/menu/Menu';
-import Head from 'next/head';
-
 import { getFeaturedPost, getCategories, getAllPosts } from './lib/action';
+
+export async function generateMetadata(params) {
+	const searchParams = (await params).searchParams;
+	const page = searchParams?.page || 1;
+	const { posts } = await getAllPosts({ page });
+
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'ItemList',
+		name: 'AIStory Heaven – XThe Ultimate Blog App',
+		itemListElement: posts?.map((post, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			url: post.coverImage ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${post.coverImage}` : '/p1.jpeg',
+			name: post.title,
+		})),
+	};
+
+	return {
+		title: 'AIStory Heaven – The Ultimate Blog App',
+		description: 'Explore nightly AI-generated stories and unleash your imagination!',
+		openGraph: {
+			title: 'AIStory Heaven – The Ultimate Blog App',
+			description: 'Explore nightly AI-generated stories and unleash your imagination!',
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
+			siteName: 'AIStory Heaven',
+			images: [{ url: `${process.env.NEXT_PUBLIC_SITE_URL}/default-thumbnail.jpg` }],
+			type: 'website',
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: 'AIStory Heaven – The Ultimate Blog App',
+			description: 'Explore nightly AI-generated stories and unleash your imagination!',
+			images: [`${process.env.NEXT_PUBLIC_SITE_URL}/default-thumbnail.jpg`],
+		},
+		other: {
+			canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
+			prev: posts.length > 1 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=1` : undefined,
+			next: posts.length > 10 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=2` : undefined,
+		},
+		script: [
+			{
+				type: 'application/ld+json',
+				children: JSON.stringify(structuredData),
+			},
+		],
+	};
+}
 
 export default async function Home(props) {
 	const searchParams = await props.searchParams;
@@ -15,102 +61,18 @@ export default async function Home(props) {
 	const category = await getCategories();
 	const { posts, count } = await getAllPosts({ page });
 
-	const structuredData = {
-		'@context': 'https://schema.org',
-		'@type': 'ItemList',
-		name: 'AIStory Heaven – The Ultimate Blog App',
-		itemListElement: posts?.map((post, index) => ({
-			'@type': 'ListItem',
-			position: index + 1,
-			url: post.coverImage ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${post.coverImage}` : '/p1.jpeg',
-			name: post.title,
-		})),
-	};
-
 	return (
-		<>
-			<Head>
-				<title>AIStory Heaven – The Ultimate Blog App</title>
-				<meta
-					name='description'
-					content='Explore nightly AI-generated stories and unleash your imagination!'
+		<div className={styles.container}>
+			<Featured data={featuredPost} />
+			<CategoryList data={category} />
+			<div className={styles.content}>
+				<CardList
+					page={page}
+					count={count}
+					data={posts}
 				/>
-				<link
-					rel='canonical'
-					href={`${process.env.NEXT_PUBLIC_SITE_URL}/`}
-				/>
-
-				{/* Open Graph (Facebook, LinkedIn) */}
-				<meta
-					property='og:title'
-					content='AIStory Heaven – The Ultimate Blog App'
-				/>
-				<meta
-					property='og:description'
-					content='Explore nightly AI-generated stories and unleash your imagination!'
-				/>
-				<meta
-					property='og:url'
-					href={`${process.env.NEXT_PUBLIC_SITE_URL}/`}
-				/>
-				<meta
-					property='og:type'
-					content='website'
-				/>
-				<meta
-					property='og:image'
-					content={`${process.env.NEXT_PUBLIC_SITE_URL}/default-thumbnail.jpg`}
-				/>
-
-				{/* Twitter Card */}
-				<meta
-					name='twitter:card'
-					content='summary_large_image'
-				/>
-				<meta
-					name='twitter:title'
-					content='Latest Blog Posts | My Blog'
-				/>
-				<meta
-					name='twitter:description'
-					content='Explore the latest tech and programming blogs on My Blog.'
-				/>
-				<meta
-					name='twitter:image'
-					content={`${process.env.NEXT_PUBLIC_SITE_URL}/default-thumbnail.jpg`}
-				/>
-
-				{/* JSON-LD Structured Data */}
-				<script
-					type='application/ld+json'
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-				/>
-
-				{page > 1 && (
-					<link
-						rel='prev'
-						href={`${process.env.NEXT_PUBLIC_SITE_URL}/?page=${page - 1}`}
-					/>
-				)}
-				{count > page * 10 && (
-					<link
-						rel='next'
-						href={`${process.env.NEXT_PUBLIC_SITE_URL}/?page=${page + 1}`}
-					/>
-				)}
-			</Head>
-			<div className={styles.container}>
-				<Featured data={featuredPost} />
-				<CategoryList data={category} />
-				<div className={styles.content}>
-					<CardList
-						page={page}
-						count={count}
-						data={posts}
-					/>
-					<Menu />
-				</div>
+				<Menu />
 			</div>
-		</>
+		</div>
 	);
 }

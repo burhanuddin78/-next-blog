@@ -22,7 +22,8 @@ const PostSchema = new mongoose.Schema(
 		publishedAt: { type: Date },
 		views: [
 			{
-				user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+				ipAddress: String, // Store guest IP
+				timestamp: { type: Date, default: Date.now },
 			},
 		],
 

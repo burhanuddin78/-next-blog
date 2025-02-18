@@ -3,7 +3,7 @@ import styles from './menu.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { getEditorChoicePosts, getCategories } from '@/app/lib/action';
+import { getEditorChoicePosts, getCategories, getMostPopular } from '@/app/lib/action';
 
 import MenuCategories from '../menuCategories/MenuCategories';
 import { capitalizeFirstLetter, formatRegionalDate } from '../../helpers/helper';
@@ -14,6 +14,7 @@ async function Menu() {
 
 	const category = await getCategories();
 
+	const { posts } = await getMostPopular();
 	const { editorsChoice } = await getEditorChoicePosts();
 
 	return (
@@ -21,8 +22,8 @@ async function Menu() {
 			<h2 className={styles.subtitle}>{"What's hot"}</h2>
 			<h1 className={styles.title}>Most Popular</h1>
 			<div className={styles.items}>
-				{editorsChoice &&
-					editorsChoice?.slice(0, 4).map((post) => (
+				{posts &&
+					(posts || [])?.map((post) => (
 						<Link
 							key={post._id}
 							href={`/posts/${post.slug}`}

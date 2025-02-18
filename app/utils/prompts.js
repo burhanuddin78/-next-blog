@@ -1,4 +1,4 @@
-const coding = `Generate a detailed blog post in the "Coding" category as an **object** with the following JSON Object structure:  
+const coding = `Generate a detailed unique blog post in the "Coding" category as an **object** with the following JSON Object structure:  
 
 {
   "title": "Engaging and Descriptive Title",
@@ -9,8 +9,8 @@ const coding = `Generate a detailed blog post in the "Coding" category as an **o
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", etc.).  
   - Ensure correct **line breaks** ("<br>" or "<p>" tags) for better readability.  
   - The description should be structured well and visually appealing.  
@@ -24,7 +24,7 @@ const coding = `Generate a detailed blog post in the "Coding" category as an **o
 
 The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill** for display, ensuring proper line breaks and formatting.`;
 
-const style = `Generate a detailed blog post in the **"Style"** category as an **object** with the following JSON Object structure:  
+const style = `Generate a detailed unique blog post in the **"Style"** category as an **object** with the following JSON Object structure:  
 
 {
   "title": "Engaging and Descriptive Title",
@@ -35,8 +35,8 @@ const style = `Generate a detailed blog post in the **"Style"** category as an *
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
   - Ensure correct **line breaks** and paragraph spacing for readability.  
   - The description should be structured well and visually appealing.  
@@ -50,7 +50,7 @@ const style = `Generate a detailed blog post in the **"Style"** category as an *
 
 The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
 
-const fashion = `Generate a detailed blog post in the **"Fashion"** category as an **object** with the following JSON Object structure:  
+const fashion = `Generate a detailed unique blog post in the **"Fashion"** category as an **object** with the following JSON Object structure:  
 
 {
   "title": "Engaging and Descriptive Title",
@@ -60,8 +60,8 @@ const fashion = `Generate a detailed blog post in the **"Fashion"** category as 
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
   - Ensure correct **line breaks** and paragraph spacing for readability.  
   - The description should be well-structured and visually appealing.  
@@ -76,7 +76,7 @@ const fashion = `Generate a detailed blog post in the **"Fashion"** category as 
 
 The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
 
-const food = `Generate a detailed blog post in the **"Food"** category as an **object** with the following JSON Object structure:  
+const food = `Generate a detailed unique blog post in the **"Food"** category as an **object** with the following JSON Object structure:  
 
 
 {
@@ -88,8 +88,8 @@ const food = `Generate a detailed blog post in the **"Food"** category as an **o
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
   - Ensure correct **line breaks** and paragraph spacing for readability.  
   - The description should be structured well and visually appealing.  
@@ -105,7 +105,7 @@ const food = `Generate a detailed blog post in the **"Food"** category as an **o
 
 The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
 
-const culture = `Generate a detailed blog post in the **"Culture"** category as an **object** with the following JSON Object structure:  
+const culture = `Generate a detailed unique blog post in the **"Culture"** category as an **object** with the following JSON Object structure:  
 
 json
 :{
@@ -117,8 +117,8 @@ json
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
   - Ensure correct **line breaks** and paragraph spacing for readability.  
   - The description should be structured well and visually appealing.  
@@ -133,7 +133,7 @@ json
 
 The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
 
-const travel = `Generate a detailed blog post in the **"Travel"** category as an **object** with the following JSON Object structure:  
+const travel = `Generate a detailed unique blog post in the **"Travel"** category as an **object** with the following JSON Object structure:  
 
 
 {
@@ -145,8 +145,8 @@ const travel = `Generate a detailed blog post in the **"Travel"** category as an
 ### **Requirements:**  
 - **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
 - **Description:**  
+  - Do not include title in description as heading or any other heading and spaces in the start of description.
   - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Do not include title in description as heading.
   - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
   - Ensure correct **line breaks** and paragraph spacing for readability.  
   - The description should be well-structured and visually appealing.  

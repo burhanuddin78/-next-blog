@@ -8,6 +8,7 @@ import { resizeImage, slugify, MAX_FILE_SIZE } from '../utils/common';
 import { uploadToS3 } from '../utils/s3';
 
 import { revalidatePath } from 'next/cache';
+import axios from 'axios';
 
 export async function userRegisterAction({ username, email, password }) {
 	try {
@@ -188,14 +189,14 @@ export async function getPostBySlug(slug) {
 
 	// Validation
 	if (!slug) {
-		return { success: false, error: 'Invalid Request' };
+		return { success: false, error: 'Invalid Request', data: {} };
 	}
 
 	// check if the blog is existing
 	const post = await Post.findOne({ slug }).populate('category', 'title').populate('user', 'name').lean();
 	// Validation`
 	if (!post) {
-		return { success: false, error: 'Blog Not Found' };
+		return { success: false, error: 'Blog Not Found', data: {} };
 	}
 
 	return {
@@ -374,4 +375,91 @@ export async function getPostsForSiteMap() {
 	return {
 		posts,
 	};
+}
+
+export async function trackGuestView(slug) {
+	await connectToDatabase();
+
+	try {
+		const response = await axios.get(`https://jsonip.com/`);
+
+		const ip = response?.data?.ip;
+
+		const post = await Post.findOne({ slug });
+		if (!post) return { success: false, message: 'Post not found' };
+
+		const existingView = post?.views?.find((view) => view.ipAddress === ip);
+
+		if (!existingView) {
+			if (!post?.views) post.views = [];
+			post.views.push({ ipAddress: ip });
+			await post.save();
+		}
+
+		return { success: true, message: 'View recorded' };
+	} catch (error) {
+		return { success: false, message: 'Server error', error };
+	}
+}
+
+export async function getMostPopular() {
+	await connectToDatabase();
+
+	try {
+		let posts = await Post.aggregate([
+			{
+				$addFields: {
+					viewsCount: { $size: { $ifNull: ['$views', []] } }, // Ensure 'views' is always an array
+				},
+			},
+			{
+				$sort: { viewsCount: -1, createdAt: -1 }, // Sort by viewsCount DESC, then createdAt DESC
+			},
+			{
+				$limit: 7, // Limit results to top 7
+			},
+			// Populate the 'category' field
+			{
+				$lookup: {
+					from: 'categories', // Collection name in MongoDB
+					localField: 'category',
+					foreignField: '_id',
+					as: 'category',
+				},
+			},
+			{ $unwind: { path: '$category', preserveNullAndEmptyArrays: true } }, // Convert array to object (optional)
+
+			// Populate the 'user' field
+			{
+				$lookup: {
+					from: 'users', // Collection name in MongoDB
+					localField: 'user',
+					foreignField: '_id',
+					as: 'user',
+				},
+			},
+			{ $unwind: { path: '$user', preserveNullAndEmptyArrays: true } }, // Convert array to object (optional)
+
+			// Project only necessary fields
+			{
+				$project: {
+					_id: 1,
+					title: 1,
+					slug: 1,
+					viewsCount: 1,
+					publishedAt: 1,
+					'category.title': 1,
+					'category.color': 1,
+					'user.name': 1,
+				},
+			},
+		]);
+
+		posts = posts.map(transformedData);
+
+		return { success: true, posts };
+	} catch (error) {
+		console.error('Error fetching top viewed posts:', error);
+		return { success: false, posts: [] };
+	}
 }
