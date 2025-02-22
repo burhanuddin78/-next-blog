@@ -1,165 +1,319 @@
-const coding = `Generate a detailed unique blog post in the "Coding" category as an **object** with the following JSON Object structure:  
+const coding = `Generate a detailed and unique blog post in the "Coding" category as a **strictly formatted JSON object** with the following structure:
 
+\`\`\`json
 {
   "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
+  "description": "HTML-formatted blog post content suitable for React-Quill npm lib, ensuring valid JSON encoding."
 }
+\`\`\`
 
+### **Strict Output Requirements:**
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Provide a clear, concise, and **unique** title not commonly covered or previously generated.  
+   - Ensure the title is a plain string without HTML or special characters.  
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", etc.).  
-  - Ensure correct **line breaks** ("<br>" or "<p>" tags) for better readability.  
-  - The description should be structured well and visually appealing.  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an engaging introduction that provides proper context.  
-  - Include **code snippets** where relevant and format them correctly.  
-  - Keep the content informative, structured logically, and developer-friendly.  
-  - Provide relevant **examples or use cases**.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - End with a well-rounded conclusion summarizing key takeaways.  
+2. **Description:**  
+   - Must be **HTML-formatted**, suitable for rendering in **React-Quill**.  
+   - Use valid HTML tags like "<p>", "<strong>", "<em>", "<h2>", "<h3>", and "<pre>".  
+   - Ensure **line breaks** using "<p>" or "<br>" for paragraph separation.  
+   - Format **code snippets** using the "<pre><code>" structure.  
+   - Avoid headings within the description and redundant whitespace.  
+   - Structure the content logically with an introduction, examples, and conclusion.  
+   - **Escape all quotes and special characters** to ensure valid JSON formatting.  
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill** for display, ensuring proper line breaks and formatting.`;
+### **Uniqueness Criteria:**  
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**
+- Do not generate blog posts on commonly covered topics like "JavaScript Promises," "React Hooks," or "Node.js Basics."  
+- Ensure the topic is **original**, thought-provoking, and less commonly discussed.  
+- Avoid generating blog posts similar to previous requests or the same theme.  
 
-const style = `Generate a detailed unique blog post in the **"Style"** category as an **object** with the following JSON Object structure:  
+### **Strict Formatting Rules:**  
+- **No Markdown, extra notes, or comments.**  
+- Ensure **valid JSON encoding** with properly escaped characters.  
+- The output must be a **single JSON object** without surrounding text.  
+- Strictly enforce **HTML structure** for rendering in React-Quill.  
 
+Ensure that the generated JSON object is **clean, unique, and properly formatted**, without any surrounding text or formatting issues.`;
+
+const style = `Generate a detailed and unique blog post in the **"Style"** category as a **strictly formatted JSON object** with the following structure:
+
+\`\`\`json
 {
   "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
+  "description": "HTML-formatted blog post content suitable for React-Quill, ensuring valid JSON encoding."
 }
+\`\`\`
 
+### **Strict Output Requirements:**
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
-  - Ensure correct **line breaks** and paragraph spacing for readability.  
-  - The description should be structured well and visually appealing.  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an engaging introduction that provides proper context.  
-  - Discuss **fashion trends, styling tips, outfit ideas, color combinations, or beauty insights**, depending on the topic.  
-  - Include relevant **examples, images (if applicable), or styling guides**.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - Use **formatted text** ("<strong>", "<em>", lists, blockquotes) for better presentation.  
-  - End with a well-rounded **conclusion** summarizing key takeaways and styling advice.  
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Ensure the title is a plain string without HTML or special characters.  
+   - Avoid generic titles like "Summer Fashion Tips" or "Winter Outfit Ideas."
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
+2. **Description:**  
+   - Must be **HTML-formatted**, suitable for rendering in **React-Quill**.  
+   - Use valid HTML tags like "<p>", "<strong>", "<em>", "<h2>", "<h3>", and "<pre>".  
+   - Ensure **line breaks** using "<p>" or "<br>" for paragraph separation.  
+   - Format **styling guides** using ordered ("<ol>") or unordered lists ("<ul>").  
+   - Avoid including the title or redundant whitespace within the description.  
+   - Structure the content logically with an introduction, examples, and conclusion.  
+   - **Escape all quotes and special characters** to ensure valid JSON formatting.  
 
-const fashion = `Generate a detailed unique blog post in the **"Fashion"** category as an **object** with the following JSON Object structure:  
+3. **Content Focus:**  
+   - Discuss **fashion trends, styling tips, outfit ideas, color combinations, or beauty insights.**  
+   - Ensure **originality** by avoiding common topics like "Basic Wardrobe Essentials" or "Classic Outfit Ideas."  
+   - Provide **relevant examples** or step-by-step styling guides where appropriate.  
+   - Format text using "**<strong>**" for emphasis and "**<em>**" for highlighting key points.  
+   - Use **blockquotes ("<blockquote>")** for style advice or expert insights.  
 
+4. **Strict Formatting Rules:**  
+   - **No Markdown, extra notes, or comments.**  
+   - Ensure **valid JSON encoding** with properly escaped characters.  
+   - The output must be a **single JSON object** without surrounding text.  
+   - Strictly enforce **HTML structure** for rendering in React-Quill.  
+
+### **Uniqueness Criteria:**  
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**
+- Avoid generating blog posts on commonly covered topics like "Summer Fashion Tips" or "Basic Wardrobe Essentials."  
+- Ensure the topic is **original**, creative, and less commonly discussed.  
+- Avoid generating blog posts similar to previous requests or the same theme.  
+
+Ensure that the generated JSON object is **clean, unique, and properly formatted**, without any surrounding text or formatting issues.`;
+
+const fashion = `Generate a unique, detailed blog post in the **"Fashion"** category as a **JSON object** with the following structure:
+
+\`\`\`json
 {
-  "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
+  "title": "Descriptive and Relevant Title",
+  "description": "HTML-formatted blog post content suitable for React-Quill, ensuring valid JSON encoding."
 }
+\`\`\`
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
-  - Ensure correct **line breaks** and paragraph spacing for readability.  
-  - The description should be well-structured and visually appealing.  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an **engaging introduction** that sets the tone and provides context.  
-  - Discuss **fashion trends, seasonal outfit ideas, styling tips, wardrobe essentials, or celebrity-inspired fashion**, depending on the topic.  
-  - Include **color palettes, fabric choices, accessorizing tips, and do’s & don’ts** for styling.  
-  - Provide relevant **examples, images (if applicable), or links to recommended fashion items**.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - Use **formatted text** ("<strong>", "<em>", lists, blockquotes) for better presentation.  
-  - End with a well-rounded **conclusion** summarizing key takeaways and fashion advice.  
+### **Output Requirements:**
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Provide a **descriptive and contextually relevant title** as a plain string.  
+   - Avoid **generic, overused phrases** like *"Effortless Chic"*, *"Wardrobe Essentials"*, or *"Latest Trends."*  
+   - Ensure the title reflects the **specific blog content** and avoids creative clichés.  
+   - No HTML tags, special characters, or additional formatting.
 
-const food = `Generate a detailed unique blog post in the **"Food"** category as an **object** with the following JSON Object structure:  
+2. **Description:**  
+   - Write a **compelling, unique blog post** formatted for **React-Quill** using HTML tags ("<p>", "<strong>", "<em>", "<h2>", "<ul>", etc.).  
+   - Ensure proper **line breaks**, **paragraph spacing**, and **JSON encoding.**  
+   - **Do not include the title within the description.**  
+   - Ensure the content is **structured** with:  
+     - **Introduction:** Clear context and engaging opening.  
+     - **Main Body:** Fashion trends, styling tips, color combinations, or outfit ideas.  
+     - **Examples:** Real-world use cases or styling guides (without clichéd fashion jargon).  
+     - **Conclusion:** Key takeaways and final fashion advice.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and lists for clarity.
 
+3. **Content Focus:**  
+   - Discuss **practical fashion insights** like:  
+     - **Seasonal wardrobe ideas**, **fabric choices**, or **color trends**.  
+     - **Styling tips for work, casual, or events**, avoiding overused "chic" language.  
+     - **Fashion do’s and don’ts**, **celebrity-inspired ideas**, or **sustainable fashion.**  
+   - Avoid **overly creative phrases** like *"Effortless Chic"* or *"Timeless Style."*  
+   - Ensure **proper paragraph spacing** and **escape special characters** for JSON validity.
 
+4. **Strict Formatting:**  
+   - Ensure valid **JSON output** without syntax errors.  
+   - No **surrounding comments, Markdown, or extra formatting.**  
+   - The output must be a **single JSON object**, ready for rendering.  
+
+---
+
+### **Uniqueness Criteria:**
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**
+- **No clichés:** Avoid titles like *"Effortless Chic"*, *"Classic Wardrobe"*, or *"Ultimate Guide."*  
+- **Fresh Content:** Ensure blog topics are unique, practical, and avoid repetition.  
+- **Clear JSON:** Escape quotes and special characters properly.
+
+---
+
+Ensure the generated JSON object is **unique, clean, and React-Quill-ready**, without clichéd language or formatting issues.`;
+
+const food = `Generate a unique, detailed blog post in the **"Food"** category as a **JSON object** with the following structure:
+
+\`\`\`json
 {
-  "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
+  "title": "Descriptive and Unique Title",
+  "description": "HTML-formatted blog post content suitable for React-Quill, ensuring valid JSON encoding."
 }
+\`\`\`
 
+### **Output Requirements:**
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
-  - Ensure correct **line breaks** and paragraph spacing for readability.  
-  - The description should be structured well and visually appealing.  
-- **Blog Content:**  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an **engaging introduction** that provides context and grabs attention.  
-  - Discuss **recipes, cooking tips, healthy eating, food trends, restaurant reviews, or cultural cuisines**, depending on the topic.  
-  - Include **ingredients, step-by-step instructions, preparation time, and cooking techniques** if writing a recipe.  
-  - Provide relevant **examples, food pairings, presentation tips, and plating suggestions**.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - Use **formatted text** ("<strong>", "<em>", lists, blockquotes) for better presentation.  
-  - End with a well-rounded **conclusion**, summarizing key takeaways and any additional recommendations.  
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Ensure the title is **descriptive, engaging**, and relevant to the blog content.  
+   - **Do not reuse** previously generated titles under any circumstances.  
+   - Avoid generic phrases or common titles like "Delicious Recipes" or "Healthy Eating Tips."  
+   - No HTML tags, special characters, or formatting.
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
+2. **Description:**  
+   - Write a **compelling blog post** formatted for **React-Quill** using HTML tags ("<p>", "<strong>", "<em>", "<h2>", "<ul>", etc.).  
+   - Ensure proper **line breaks**, **paragraph spacing**, and **JSON encoding** for readability.  
+   - **Do not include the title** within the description.  
+   - Ensure the content is **structured** with the following sections:  
+     - **Introduction:** Context and purpose of the blog post.  
+     - **Main Content:** Topic discussion such as recipes, cooking tips, healthy eating, cultural cuisines, or restaurant insights.  
+     - **Details:** If it's a recipe, include ingredients, preparation steps, cooking techniques, and presentation tips.  
+     - **Examples:** Highlight real-world food pairings, regional variations, or expert suggestions.  
+     - **Conclusion:** Summarize key takeaways and recommendations.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and lists for clarity.  
 
-const culture = `Generate a detailed unique blog post in the **"Culture"** category as an **object** with the following JSON Object structure:  
+3. **Content Focus:**  
+   - Ensure the topic is **unique** and **practical**, avoiding repetitive ideas.  
+   - Discuss one or more of the following:  
+     - **Recipes:** Ingredients, steps, and plating ideas.  
+     - **Healthy Eating:** Nutritional benefits and tips.  
+     - **Food Trends:** Emerging flavors, techniques, or popular dishes.  
+     - **Cultural Cuisines:** Regional specialties and traditions.  
+     - **Restaurant Reviews:** Dining experiences, ambiance, and signature dishes.  
+   - Ensure **no repetitive phrases**, redundant points, or filler content.
 
-json
-:{
-  "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
-}
+4. **Strict Formatting:**  
+   - Ensure valid **JSON output** without syntax errors.  
+   - Escape quotes and special characters for proper JSON encoding.  
+   - The output must be a **single JSON object**, ready for React-Quill rendering.
+---
 
+### **Uniqueness Criteria:**
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
-  - Ensure correct **line breaks** and paragraph spacing for readability.  
-  - The description should be structured well and visually appealing.  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an **engaging introduction** that provides context and captures interest.  
-  - Discuss **cultural traditions, historical influences, societal norms, art, music, language, or global perspectives**, depending on the topic.  
-  - Include **examples, anecdotes, and insights into how culture shapes identity and interactions**.  
-  - Explore **cross-cultural comparisons, evolving trends, or the impact of globalization** if relevant.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - Use **formatted text** ("<strong>", "<em>", lists, blockquotes) for better presentation.  
-  - End with a well-rounded **conclusion**, summarizing key takeaways and inviting discussion or reflection.  
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**.  
+- **No Repetition:** Avoid repeated phrases, redundant explanations, or filler words.  
+- **Fresh Content:** Ensure the blog post is **original**, **practical**, and free from clichés.  
+- **Valid JSON:** Escape special characters and ensure clean output.
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
+---
 
-const travel = `Generate a detailed unique blog post in the **"Travel"** category as an **object** with the following JSON Object structure:  
+Ensure the generated JSON object has a **unique title**, **original content**, and is **React-Quill-ready**, without repetition or formatting issues.`;
 
+const culture = `Generate a unique, detailed blog post in the **"Culture"** category as a **JSON object** with the following structure:
 
+\`\`\`json
 {
-  "title": "Engaging and Descriptive Title",
-  "description": "Detailed blog post content with Formatted text for React-Quill with proper line breaks",
+  "title": "Engaging and Unique Title",
+  "description": "HTML-formatted blog post content suitable for React-Quill, ensuring valid JSON encoding."
 }
+\`\`\`
 
+---
 
-### **Requirements:**  
-- **Title:** Provide an engaging and descriptive title in the form of an object property ("title").  
-- **Description:**  
-  - Do not include title in description as heading or any other heading and spaces in the start of description.
-  - Write a compelling description in a format suitable for **React-Quill** (HTML).  
-  - Use proper HTML tags ("<p>", "<strong>", "<em>", "<br>", etc.) for styling.  
-  - Ensure correct **line breaks** and paragraph spacing for readability.  
-  - The description should be well-structured and visually appealing.  
-  - Structure the content using appropriate headings ("<h2>", "<h3>", etc.).  
-  - Ensure an **engaging introduction** that sets the scene and provides context.  
-  - Discuss **top travel destinations, hidden gems, travel tips, itineraries, cultural experiences, or budget-friendly travel hacks**, depending on the topic.  
-  - Include **must-visit attractions, local cuisine recommendations, and transportation tips**.  
-  - Provide relevant **examples, packing guides, travel safety advice, and personal experiences**.  
-  - Ensure **proper line breaks** and paragraph spacing for readability.  
-  - Use **formatted text** ("<strong>", "<em>", lists, blockquotes) for better presentation.  
-  - End with a well-rounded **conclusion**, summarizing key takeaways and encouraging readers to explore new places.  
+### **Output Requirements:**
 
-The final output should be a **structured object**, making it ready for rendering in a React-based application using **React-Quill**, ensuring proper line breaks and formatting for a visually appealing display.`;
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Ensure the title is **descriptive**, **engaging**, and **relevant** to the blog content.  
+   - **Avoid generic phrases** or common titles like "Cultural Traditions Around the World" or "Exploring Art and Music."  
+   - No HTML tags, special characters, or formatting in the title.  
+   - **Do not reuse** previously generated titles under any circumstances.  
+
+2. **Description:**  
+   - Write a **compelling blog post** formatted for **React-Quill** using proper HTML tags ("<p>", "<strong>", "<em>", "<h2>", "<ul>", etc.).  
+   - Ensure correct **line breaks**, **paragraph spacing**, and **valid JSON encoding**.  
+   - **Do not include the title** within the description.  
+   - Structure the content with the following sections:  
+     - **Introduction:** Engage readers by providing context and sparking interest.  
+     - **Main Content:** Explore cultural aspects such as traditions, history, societal norms, art, music, language, and global perspectives.  
+     - **Details:** Include examples, anecdotes, and insights into how culture shapes identity and interactions.  
+     - **Comparisons:** If applicable, discuss cross-cultural perspectives or the impact of globalization.  
+     - **Conclusion:** Summarize key takeaways and invite reflection or discussion.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity.  
+
+3. **Content Focus:**  
+   - Ensure the blog post is **human-like**, **unique**, and **practical**, avoiding repetitive ideas.  
+   - Discuss one or more of the following:  
+     - **Cultural Traditions:** Festivals, rituals, and unique practices.  
+     - **Historical Influences:** How history shapes cultural identity.  
+     - **Societal Norms:** Etiquette, values, and social expectations.  
+     - **Art and Music:** Cultural expressions and their evolution.  
+     - **Language:** Impact of language on cultural identity.  
+     - **Global Perspectives:** How globalization reshapes cultural boundaries.  
+   - **No filler content**, redundant explanations, or overly formal language.  
+   - Ensure the writing **flows naturally**, resembling human-generated content.  
+
+4. **Strict Formatting:**  
+   - Ensure valid **JSON output** without syntax errors.  
+   - Escape quotes and special characters for proper JSON encoding.  
+   - The output must be a **single JSON object**, ready for **React-Quill rendering**.  
+
+---
+### **Uniqueness Criteria:**  
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**.  
+- **Human-Like Writing:** Ensure content reads as though written by a person, not generated automatically.  
+- **No Repetition:** Avoid repeated phrases, redundant points, or filler content.  
+- **Fresh Content:** Ensure the blog post is **original**, **practical**, and **free from clichés**.  
+- **Valid JSON:** Escape special characters and ensure clean output.
+
+---
+
+Ensure the generated JSON object has a **unique title**, **original human-like content**, and is **React-Quill-ready**, without repetition or formatting issues.`;
+
+const travel = `Generate a unique, detailed blog post in the **"Travel"** category as a **JSON object** with the following structure:
+
+\`\`\`json
+{
+  "title": "Engaging and Unique Title",
+  "description": "HTML-formatted blog post content suitable for React-Quill, ensuring valid JSON encoding."
+}
+\`\`\`
+
+---
+
+### **Output Requirements:**
+
+1. **Title:**  
+   - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
+   - Ensure the title is **descriptive**, **engaging**, and **relevant** to the blog content.  
+   - **Avoid generic phrases** like "Top Travel Destinations" or "Best Places to Visit."  
+   - No HTML tags, special characters, or formatting in the title.  
+   - **Do not reuse** previously generated titles under any circumstances.  
+
+2. **Description:**  
+   - Write a **compelling blog post** formatted for **React-Quill** using proper HTML tags ("<p>", "<strong>", "<em>", "<h2>", "<ul>", etc.).  
+   - Ensure correct **line breaks**, **paragraph spacing**, and **valid JSON encoding**.  
+   - **Do not include the title** within the description.  
+   - Structure the content with the following sections:  
+     - **Introduction:** Engage readers by providing context and sparking interest.  
+     - **Main Content:** Explore travel topics such as destinations, itineraries, travel hacks, cultural experiences, or hidden gems.  
+     - **Details:** Highlight must-visit attractions, local cuisines, transportation tips, and personal anecdotes.  
+     - **Guides:** If applicable, include packing lists, safety tips, or budget-friendly suggestions.  
+     - **Conclusion:** Summarize key takeaways and encourage readers to explore further.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity.  
+
+3. **Content Focus:**  
+   - Ensure the blog post is **human-like**, **unique**, and **practical**, avoiding repetitive ideas.  
+   - Discuss one or more of the following:  
+     - **Top Destinations:** Popular and underrated places to visit.  
+     - **Hidden Gems:** Unique, lesser-known spots worth exploring.  
+     - **Travel Tips:** Budget-friendly advice, packing tips, and itineraries.  
+     - **Cultural Experiences:** Festivals, traditions, and local practices.  
+     - **Food & Cuisine:** Must-try dishes and where to find them.  
+   - **No filler content**, redundant explanations, or overly formal language.  
+   - Ensure the writing **flows naturally**, resembling human-generated content.  
+
+4. **Strict Formatting:**  
+   - Ensure valid **JSON output** without syntax errors.  
+   - Escape quotes and special characters for proper JSON encoding.  
+   - The output must be a **single JSON object**, ready for **React-Quill rendering**.  
+
+---
+
+### **Uniqueness Criteria:**  
+- **Unique Title:** Ensure the title is **100% unique** and **never generated before**.  
+- **Human-Like Writing:** Ensure content reads as though written by a person, not generated automatically.  
+- **No Repetition:** Avoid repeated phrases, redundant points, or filler content.  
+- **Fresh Content:** Ensure the blog post is **original**, **practical**, and **free from clichés**.  
+- **Valid JSON:** Escape special characters and ensure clean output.
+
+---
+
+Ensure the generated JSON object has a **unique title**, **original human-like content**, and is **React-Quill-ready**, without repetition or formatting issues.`;
 
 const prompts = { coding, travel, culture, food, fashion, style };
 export default prompts;

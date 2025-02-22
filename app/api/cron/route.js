@@ -24,15 +24,16 @@ async function generatePosts() {
 	const categories = await Category.find().lean();
 	for (const category of categories) {
 		try {
+			console.log('🚀 Start Generation Blog for category: ' + category.title);
 			const blog = await generateBlog(category.title);
 			if (!blog || !blog.title || !blog.description) {
-				console.warn(`Skipping category "${category.title}" due to invalid blog response.`);
+				console.warn(`🔴 Skipping category "${category.title}" due to invalid blog response.`);
 				continue;
 			}
 
 			const coverImage = await generateImage(blog.title);
 			if (!coverImage || !coverImage.bufferImage) {
-				console.warn(`Skipping blog "${blog.title}" due to invalid image response.`);
+				console.warn(`🔴 Skipping blog "${blog.title}" due to invalid image response.`);
 				continue;
 			}
 
@@ -42,6 +43,8 @@ async function generatePosts() {
 				category: category._id.toString(),
 				coverImage,
 			});
+
+			console.log('🟢 Complete Generation Blog for category: ' + category.title);
 		} catch (error) {
 			console.error(`Error generating post for category "${category.title}":`, error);
 		}
@@ -71,6 +74,8 @@ async function createPost({ title, description, category, coverImage }) {
 			category,
 			user: process.env.DEFAULT_USER_ID || '678243de1c19194d55573eb8',
 			publishedAt: new Date(),
+			isEditorsChoice: true,
+			isActive: true,
 		};
 
 		post = await Post.create(newPost);

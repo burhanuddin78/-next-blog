@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const PostSchema = new mongoose.Schema(
 	{
 		slug: { type: String, trim: true, unique: true, lowerCase: true, required: true },
-		title: { type: String, min: 3, max: 100, required: true, trim: true, unique: true },
+		title: { type: String, min: 3, max: 100, required: true, trim: true },
 		description: { type: String, min: 1, required: true, trim: true },
 		coverImage: { type: String },
 		isActive: { type: Boolean, default: false },

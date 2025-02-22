@@ -248,7 +248,7 @@ export async function togglePostPublication(slug) {
 	}
 }
 
-const transformedData = ({ _id, slug, title, description, coverImage, user, category, publishedAt }) => ({
+const transformedData = ({ _id, slug, title, description, coverImage, user, category, publishedAt, updatedAt }) => ({
 	id: _id?.toString() || '',
 	slug,
 	title,
@@ -257,6 +257,7 @@ const transformedData = ({ _id, slug, title, description, coverImage, user, cate
 	category: { title: category.title, color: category.color },
 	editor: user.name,
 	publishedAt,
+	updatedAt,
 });
 
 export async function getFeaturedPost() {
@@ -295,7 +296,7 @@ export async function getFeaturedPost() {
 export async function getAllPosts({ page = 1, categoryTitle = '' }) {
 	await connectToDatabase();
 	try {
-		const ITEM_PER_PAGE = 5;
+		const ITEM_PER_PAGE = 10;
 		page = parseInt(page) || 1; // Get current page (default to 1 if not provided)
 
 		// Calculate skip value for pagination
@@ -353,8 +354,8 @@ export async function getEditorChoicePosts() {
 	try {
 		// Fetch editor's choice posts
 		let editorsChoice = await Post.find({ isEditorsChoice: true, isActive: true })
-			.sort({ publishedAt: -1 })
-			.limit(5)
+			.sort({ createdAt: -1 })
+			.limit(7)
 			.populate('category', { title: 1, color: 1 })
 			.populate('user', 'name')
 			.lean();
