@@ -5,9 +5,9 @@ import { uploadToS3 } from '@/app/utils/s3';
 import { generateBlog, generateImage } from '@/app/utils/assistanceService';
 
 export async function GET(req, res) {
-	// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-	// 	return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-	// }
+	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+		return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+	}
 
 	try {
 		await generatePosts();
