@@ -50,6 +50,7 @@ export async function getCategories() {
 			title: category.title,
 			image: category.image,
 			color: category.color,
+			updatedAt: category.updatedAt,
 		};
 	});
 
