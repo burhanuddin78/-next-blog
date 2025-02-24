@@ -36,6 +36,10 @@
     background-color: #5e4fff31;
 }
 
+.category.sports {
+    background-color: #950d0d3b;
+}
+
 .category {
     display: flex;
     align-items: center;

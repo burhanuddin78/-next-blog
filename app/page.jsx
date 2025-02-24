@@ -5,19 +5,19 @@ import CardList from '@/app/ui/components/cardList/CardList';
 import Menu from '@/app/ui/components/menu/Menu';
 import { getFeaturedPost, getCategories, getAllPosts } from './lib/action';
 
-export async function generateMetadata(params) {
-	const searchParams = (await params).searchParams;
-	const page = searchParams?.page || 1;
-	const { posts } = await getAllPosts({ page });
+export async function generateMetadata(props) {
+	const params = await props.searchParams;
+	const page = parseInt(params?.page, 10) || 1;
+	const { posts, count } = await getAllPosts({ page });
 
 	const structuredData = {
 		'@context': 'https://schema.org',
 		'@type': 'ItemList',
-		name: 'AIStory Heaven – XThe Ultimate Blog App',
+		name: 'AIStory Heaven – The Ultimate Blog App',
 		itemListElement: posts?.map((post, index) => ({
 			'@type': 'ListItem',
 			position: index + 1,
-			url: post.coverImage ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${post.coverImage}` : '/p1.jpeg',
+			url: post.coverImage ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${post.coverImage}` : `${process.env.NEXT_PUBLIC_SITE_URL}/default-thumbnail.jpg`,
 			name: post.title,
 		})),
 	};
@@ -41,8 +41,8 @@ export async function generateMetadata(params) {
 		},
 		other: {
 			canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
-			prev: posts.length > 1 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=1` : undefined,
-			next: posts.length > 10 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=2` : undefined,
+			prev: page > 1 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=${page - 1}` : undefined,
+			next: count > page * 10 ? `${process.env.NEXT_PUBLIC_SITE_URL}/?page=${page + 1}` : undefined,
 		},
 		script: [
 			{
@@ -54,8 +54,8 @@ export async function generateMetadata(params) {
 }
 
 export default async function Home(props) {
-	const searchParams = await props.searchParams;
-	const page = searchParams?.page || 1;
+	const params = await props.searchParams;
+	const page = parseInt(params.page, 10) || 1;
 
 	const { featuredPost } = await getFeaturedPost();
 	const category = await getCategories();

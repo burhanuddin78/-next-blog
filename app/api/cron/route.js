@@ -5,9 +5,9 @@ import { uploadToS3 } from '@/app/utils/s3';
 import { generateBlog, generateImage } from '@/app/utils/assistanceService';
 
 export async function GET(req, res) {
-	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-		return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-	}
+	// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+	// 	return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+	// }
 
 	try {
 		await generatePosts();
@@ -97,9 +97,9 @@ async function createPost({ title, description, category, coverImage }) {
 
 		const key = `${Date.now()}-${post._id.toString()}.${extension}`;
 		const buffer = coverImage.bufferImage;
-		const resizedBuffer = await resizeImage(Buffer.from(buffer));
+		// const resizedBuffer = await resizeImage(Buffer.from(buffer));
 
-		const uploadedImageUrl = await uploadToS3(resizedBuffer, bucketName, `${folder}/${key}`);
+		const uploadedImageUrl = await uploadToS3(buffer, bucketName, `${folder}/${key}`);
 		if (!uploadedImageUrl) {
 			console.error(`Image upload failed for "${title}".`);
 			return post;

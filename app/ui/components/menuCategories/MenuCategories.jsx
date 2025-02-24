@@ -8,7 +8,7 @@ const MenuCategories = ({ category = [] }) => {
 			{category.map((x) => (
 				<Link
 					key={x.id}
-					href={`/blog?cat=${x.title}`}
+					href={`/blogs?cat=${x.title}`}
 					style={{ backgroundColor: `${x.color}` }}
 					className={`${styles.categoryItem}`}>
 					{x.title}

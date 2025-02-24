@@ -97,7 +97,7 @@ const generateImage = async (title) => {
 		// First attempt: Call the primary API
 		const response = await axios.post(
 			`https://ai-girl.site/api/workerai`,
-			{ prompt: `${title}` },
+			{ prompt: `generate cover image for title: ${title}` },
 			{ responseType: 'arraybuffer' }, // Correctly placed
 		);
 

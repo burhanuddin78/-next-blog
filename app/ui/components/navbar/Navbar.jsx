@@ -50,9 +50,9 @@ const Navbar = () => {
 					Home
 				</Link>
 				<Link
-					href='/contact'
+					href='/blogs'
 					className={styles.link}>
-					Contact
+					Blogs
 				</Link>
 				<Link
 					href='/about'

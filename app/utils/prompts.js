@@ -20,7 +20,8 @@ const coding = `Generate a detailed and unique blog post in the "Coding" categor
    - Format **code snippets** using the "<pre><code>" structure.  
    - Avoid headings within the description and redundant whitespace.  
    - Structure the content logically with an introduction, examples, and conclusion.  
-   - **Escape all quotes and special characters** to ensure valid JSON formatting.  
+   - **Escape all quotes and special characters** to ensure valid JSON formatting.
+   - Ensure **proper line breaks** and paragraph spacing for readability.    
 
 ### **Uniqueness Criteria:**  
 - **Unique Title:** Ensure the title is **100% unique** and **never generated before**
@@ -50,7 +51,7 @@ const style = `Generate a detailed and unique blog post in the **"Style"** categ
 1. **Title:**  
    - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
    - Ensure the title is a plain string without HTML or special characters.  
-   - Avoid generic titles like "Summer Fashion Tips" or "Winter Outfit Ideas."
+   - Avoid generic titles like "Summer Fashion Tips", "Reimagining Retro: " or "Winter Outfit Ideas. etc"
 
 2. **Description:**  
    - Must be **HTML-formatted**, suitable for rendering in **React-Quill**.  
@@ -59,7 +60,8 @@ const style = `Generate a detailed and unique blog post in the **"Style"** categ
    - Format **styling guides** using ordered ("<ol>") or unordered lists ("<ul>").  
    - Avoid including the title or redundant whitespace within the description.  
    - Structure the content logically with an introduction, examples, and conclusion.  
-   - **Escape all quotes and special characters** to ensure valid JSON formatting.  
+   - **Escape all quotes and special characters** to ensure valid JSON formatting.
+   - Ensure **proper line breaks** and paragraph spacing for readability.  
 
 3. **Content Focus:**  
    - Discuss **fashion trends, styling tips, outfit ideas, color combinations, or beauty insights.**  
@@ -76,7 +78,7 @@ const style = `Generate a detailed and unique blog post in the **"Style"** categ
 
 ### **Uniqueness Criteria:**  
 - **Unique Title:** Ensure the title is **100% unique** and **never generated before**
-- Avoid generating blog posts on commonly covered topics like "Summer Fashion Tips" or "Basic Wardrobe Essentials."  
+- Avoid generating blog posts on commonly covered topics like "Summer Fashion Tips" "Reimagining"  or "Basic Wardrobe Essentials." etc  
 - Ensure the topic is **original**, creative, and less commonly discussed.  
 - Avoid generating blog posts similar to previous requests or the same theme.  
 
@@ -110,6 +112,7 @@ const fashion = `Generate a unique, detailed blog post in the **"Fashion"** cate
      - **Examples:** Real-world use cases or styling guides (without clichéd fashion jargon).  
      - **Conclusion:** Key takeaways and final fashion advice.  
    - Use **formatted text** ("<strong>", "<em>") for emphasis and lists for clarity.
+   - Ensure **proper line breaks** and paragraph spacing for readability.  
 
 3. **Content Focus:**  
    - Discuss **practical fashion insights** like:  
@@ -151,7 +154,7 @@ const food = `Generate a unique, detailed blog post in the **"Food"** category a
    - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
    - Ensure the title is **descriptive, engaging**, and relevant to the blog content.  
    - **Do not reuse** previously generated titles under any circumstances.  
-   - Avoid generic phrases or common titles like "Delicious Recipes" or "Healthy Eating Tips."  
+   - Avoid generic phrases or common titles like "Delicious Recipes" "Unlocking Umami" or "Healthy Eating Tips." etc.  
    - No HTML tags, special characters, or formatting.
 
 2. **Description:**  
@@ -164,7 +167,8 @@ const food = `Generate a unique, detailed blog post in the **"Food"** category a
      - **Details:** If it's a recipe, include ingredients, preparation steps, cooking techniques, and presentation tips.  
      - **Examples:** Highlight real-world food pairings, regional variations, or expert suggestions.  
      - **Conclusion:** Summarize key takeaways and recommendations.  
-   - Use **formatted text** ("<strong>", "<em>") for emphasis and lists for clarity.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and lists for clarity.
+   - Ensure **proper line breaks** and paragraph spacing for readability.  
 
 3. **Content Focus:**  
    - Ensure the topic is **unique** and **practical**, avoiding repetitive ideas.  
@@ -209,7 +213,7 @@ const culture = `Generate a unique, detailed blog post in the **"Culture"** cate
 1. **Title:**  
    - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
    - Ensure the title is **descriptive**, **engaging**, and **relevant** to the blog content.  
-   - **Avoid generic phrases** or common titles like "Cultural Traditions Around the World" or "Exploring Art and Music."  
+   - **Avoid generic phrases** or common titles like "Cultural Traditions Around the World"  "The Whispering Walls" or "Exploring Art and Music. etc"  
    - No HTML tags, special characters, or formatting in the title.  
    - **Do not reuse** previously generated titles under any circumstances.  
 
@@ -223,7 +227,8 @@ const culture = `Generate a unique, detailed blog post in the **"Culture"** cate
      - **Details:** Include examples, anecdotes, and insights into how culture shapes identity and interactions.  
      - **Comparisons:** If applicable, discuss cross-cultural perspectives or the impact of globalization.  
      - **Conclusion:** Summarize key takeaways and invite reflection or discussion.  
-   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity.
+   - Ensure **proper line breaks** and paragraph spacing for readability.  
 
 3. **Content Focus:**  
    - Ensure the blog post is **human-like**, **unique**, and **practical**, avoiding repetitive ideas.  
@@ -270,7 +275,7 @@ const travel = `Generate a unique, detailed blog post in the **"Travel"** catego
 1. **Title:**  
    - Generate a **unique, human-like title** that has **never been generated before**, ensuring originality.  
    - Ensure the title is **descriptive**, **engaging**, and **relevant** to the blog content.  
-   - **Avoid generic phrases** like "Top Travel Destinations" or "Best Places to Visit."  
+   - **Avoid generic phrases** like "Top Travel Destinations", "Chasing Waterfalls" or "Best Places to Visit " etc. 
    - No HTML tags, special characters, or formatting in the title.  
    - **Do not reuse** previously generated titles under any circumstances.  
 
@@ -284,7 +289,8 @@ const travel = `Generate a unique, detailed blog post in the **"Travel"** catego
      - **Details:** Highlight must-visit attractions, local cuisines, transportation tips, and personal anecdotes.  
      - **Guides:** If applicable, include packing lists, safety tips, or budget-friendly suggestions.  
      - **Conclusion:** Summarize key takeaways and encourage readers to explore further.  
-   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity.  
+   - Use **formatted text** ("<strong>", "<em>") for emphasis and **lists** for clarity. 
+   - Ensure **proper line breaks** and paragraph spacing for readability.  
 
 3. **Content Focus:**  
    - Ensure the blog post is **human-like**, **unique**, and **practical**, avoiding repetitive ideas.  

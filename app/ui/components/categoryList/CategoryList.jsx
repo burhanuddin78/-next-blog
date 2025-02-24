@@ -12,7 +12,7 @@ export default async function CategoryList({ data }) {
 			'@type': 'ListItem',
 			position: index + 1,
 			name: category.title,
-			url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog?cat=${encodeURIComponent(category.title)}`,
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/blogs?cat=${encodeURIComponent(category.title)}`,
 		})),
 	};
 
@@ -84,7 +84,7 @@ export default async function CategoryList({ data }) {
 						data.map((category) => (
 							<Link
 								key={category._id}
-								href={`/blog?cat=${encodeURIComponent(category.title)}`}
+								href={`/blogs?cat=${encodeURIComponent(category.title)}`}
 								className={`${styles.category} ${styles[category.title]}`}
 								aria-label={`View blog posts under ${category.title}`}>
 								<Image
