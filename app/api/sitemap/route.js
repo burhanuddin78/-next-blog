@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET(req) {
-	if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-		return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-	}
+	// if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+	// 	return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+	// }
 	const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 	const { posts } = await getPostsForSiteMap();
 	const categories = await getCategories();
