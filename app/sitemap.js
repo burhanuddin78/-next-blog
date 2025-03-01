@@ -23,7 +23,7 @@ export default async function sitemap() {
 		{
 			url: BASE_URL,
 			lastModified: new Date(),
-			priority: 1.0,
+			priority: 0.9,
 		},
 		...categoryUrls,
 		...urls,
