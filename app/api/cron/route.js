@@ -10,7 +10,10 @@ export async function GET(req, res) {
 	// }
 
 	try {
-		await generatePosts();
+		process.nextTick(async () => {
+			console.log('Running at generatePosts');
+			await generatePosts();
+		});
 		return Response.json({ success: true }, { status: 200 });
 	} catch (error) {
 		console.error('Error in GET /posts:', error);
